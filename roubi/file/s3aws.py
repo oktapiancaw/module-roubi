@@ -23,6 +23,14 @@ class S3AWSRepository(BaseConnection):
         except Exception:
             raise
 
+    @property
+    def s3_meta(self):
+        return {
+            "endpoint_url": f"http://{self._metadata.host}:{self._metadata.port}",
+            "aws_access_key_id": self._metadata.username,
+            "aws_secret_access_key": self._metadata.password,
+        }
+
     def check_accessible(self, key: str, bucket: str = None) -> bool:
         try:
             if self.client == False:
@@ -51,7 +59,6 @@ class S3AWSRepository(BaseConnection):
 
     def list_folder(
         self,
-        excludeFormat: list[str] = ["cryptomancer", "trashinfo"],
         bucket: str = None,
     ) -> bool:
         try:
@@ -61,6 +68,6 @@ class S3AWSRepository(BaseConnection):
             raw = TypeAdapter(listObjectRes).validate_python(
                 self.client.list_objects(Bucket=bucket if bucket else self.bucket)
             )
-            return raw.filter_folder(excludeFormat=excludeFormat)
+            return raw.filter_folder()
         except ClientError as e:
             raise
