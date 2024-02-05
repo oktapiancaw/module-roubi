@@ -7,7 +7,7 @@ from typica import BaseConnection, ConnectionMeta, ConnectionUriMeta, BaseModel
 from roubi.models.s3aws import listObjectRes
 
 
-class RedisRepository(BaseConnection):
+class S3AWSRepository(BaseConnection):
     def __init__(self, metadata: ConnectionMeta | ConnectionUriMeta, **kwargs) -> None:
         super().__init__(metadata)
         try:
