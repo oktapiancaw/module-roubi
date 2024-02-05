@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "module-roubi"
-version = "0.1.2"
+version = "0.1.3"
 description = ""
 authors = ["Oktapian <oktapian@jkt1.ebdesk.com>"]
 readme = "Readme.md"

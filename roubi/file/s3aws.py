@@ -4,7 +4,7 @@ from pydantic import TypeAdapter
 from typica import BaseConnection, ConnectionMeta, ConnectionUriMeta, BaseModel
 
 
-from roubi.models.s3aws import listObjectRes
+from roubi.models.s3aws import listObjectRes, ObjectMeta
 
 
 class S3AWSRepository(BaseConnection):
@@ -45,7 +45,7 @@ class S3AWSRepository(BaseConnection):
         self,
         excludeFormat: list[str] = ["cryptomancer", "trashinfo"],
         bucket: str = None,
-    ) -> bool:
+    ) -> list[ObjectMeta]:
         try:
             if self.client == False:
                 raise ValueError("Fail connect")
@@ -60,7 +60,7 @@ class S3AWSRepository(BaseConnection):
     def list_folder(
         self,
         bucket: str = None,
-    ) -> bool:
+    ) -> list[ObjectMeta]:
         try:
             if self.client == False:
                 raise ValueError("Fail connect")
