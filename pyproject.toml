@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "reta-lib-connector"
+name = "module-roubi"
 version = "0.1.0"
 description = ""
 authors = ["Oktapian <oktapian@jkt1.ebdesk.com>"]
